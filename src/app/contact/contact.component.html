@@ -1,0 +1,145 @@
+<section id="contactSection" class="paralax-mf footer-paralax bg-image route" style="border-top:none;">
+  <div class="row" style="margin-bottom:30px;">
+    <div class="col-sm-12 text-center">
+      <img src="../../assets/img/wallpaperos-contact.jpg" style="width:150px" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="title-box text-center">
+        <h3 class="title-a">
+          Kontakt
+        </h3>
+        <p class="subtitle-a">
+
+        </p>
+        <div class="line-mf"></div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay-mf"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="contact-mf">
+          <div id="contact" class="box-shadow-full">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="title-box-2">
+                  <h5 class="title-left">
+                    Máte dotaz? Napište nám.
+                  </h5>
+                </div>
+                <div>
+                  <form action="" method="post" role="form" class="contactForm">
+                    <div id="sendmessage">Máte dotaz? Napište nám.</div>
+                    <div id="errormessage"></div>
+                    <div class="row">
+                      <div class="col-md-12 mb-3">
+                        <div class="form-group">
+                          <input #name type="text" name="name" class="form-control" id="contactName" placeholder="Vaše jméno" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                          <div class="validation"></div>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-group">
+                          <input #email type="email" class="form-control" name="email" id="contactEmail" placeholder="Váš email" data-rule="email" data-msg="Please enter a valid email" />
+                          <div class="validation"></div>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-group">
+                          <input #subject type="text" class="form-control" name="subject" id="contactSubject" placeholder="Předmět" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                          <div class="validation"></div>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-group">
+                          <textarea #body class="form-control" name="contactMessage" rows="5" data-rule="required" data-msg="Zde napište váš dotaz." placeholder="Zpráva..."></textarea>
+                          <div class="validation"></div>
+                        </div>
+                      </div>
+                      <div class="col-md-12 submit-button-responsive">
+                        <button (click)="sendEmail(name.value,email.value,body.value,subject.value)" class="btn btn-submit">Odeslat zprávu</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="title-box-2 pt-4 pt-md-0">
+                  <h5 class="title-left">
+                    Kontaktní osoby
+                  </h5>
+                </div>
+                <div class="more-info">
+                  <!--<p class="lead">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis dolorum dolorem soluta quidem
+                    expedita aperiam aliquid at.
+                    Totam magni ipsum suscipit amet? Autem nemo esse laboriosam ratione nobis
+                    mollitia inventore?
+                  </p>-->
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <ul class="list-ico">
+                        <!--<li><span class="ion-ios-location"></span> Olomouc 54, CZ</li>-->
+                        <h4>Petr Ngo</h4>
+                        <li><span style="font-size:30px;" class="ion-ios-telephone"></span> (+420) 704 061 523</li>
+
+                      </ul>
+                    </div>
+                    <div class="col-sm-6">
+                      <ul class="list-ico">
+                        <h4>Jan Bodlák</h4>
+                        <!--<li><span class="ion-ios-location"></span> Olomouc 54, CZ</li>-->
+                        <li><span class="ion-ios-telephone"></span> (+420) 777 125 103</li>
+
+                      </ul>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <ul class="list-ico">
+                        <li style="padding-top:40px;"><span class="ion-email"></span> info@pujcimeiphone.cz</li>
+                        <li>IČO: 06748481</li>
+                        <li>Jsme plátci DPH.</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="socials">
+                  <ul>
+                    <li><a href=""><span class="ico-circle"><i class="ion-social-facebook"></i></span></a></li>
+                    <li><a href=""><span class="ico-circle"><i class="ion-social-instagram"></i></span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer style="color:black;">
+    <div class="container">
+      <div class="col-sm-12 text-center">
+        <p style="cursor:pointer;outline:none;" [routerLink]="['/cookies']">Cookies a jejich využití</p>
+        <p style="cursor:pointer;outline:none;" [routerLink]="['/ochrana-osobnich-udaju']">Ochrana osobních údajů</p>
+        <p style="cursor:pointer;outline:none;" [routerLink]="['/add-new-toys']">_</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="copyright-box">
+            <p class="copyright">&copy; Copyright <strong>pujcimeiPhone.cz</strong>. All Rights Reserved</p>
+            <div class="credits">
+
+              by <a href="#" style="color:black;">pujcimeiPhone.cz</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</section>

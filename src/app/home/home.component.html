@@ -1,0 +1,491 @@
+<div id="home" class="intro route bg-image" style="box-shadow: black -13px 14px 19px; background-image: url(../../assets/img/blak.jpg)">
+  <div class="overlay-itro"></div>
+  <div class="intro-content display-table">
+    <div class="table-cell" style="padding-bottom: 5%;">
+      <div class="container">
+        <div class="row">
+          <div class="pull-left wow fadeInDown" data-wow-delay="0.3s" data-wow-duration="1.5s">
+            <p class="display-6 color-d"><!--Vítejte na našich stránkách!--></p>
+            <h1 class="intro-title mb-4" style="margin-bottom: 0px !important;">Potřebujete půjčit iPhone?</h1>
+            <span>&nbsp;</span><span id="typed" class="intro-title mb-4" style="color:#d6e01d">&nbsp;</span>
+
+            <div *ngIf="isSafari()" class="center-scroll wow fadeIn center-scroll-Safari" data-wow-delay="6s" data-wow-duration="1.5s">
+              <div class="down-scroll">
+
+              </div>
+              <span class="text-scroll">Více níže</span>
+            </div>
+            <div *ngIf="!isSafari()" class="center-scroll wow fadeIn center-scroll-notSafari" data-wow-delay="6s" data-wow-duration="1.5s">
+              <div class="down-scroll">
+
+              </div>
+              <span class="text-scroll">Více níže</span>
+            </div>
+          </div>
+          <div class="pull-right">
+            <div class="product-screens row">
+
+              <div class="product-screen-1 wow fadeInUp" data-wow-delay="0.9s" data-wow-duration="1.0s">
+                <img src="../../assets/img/product-screen-1.png" alt="">
+              </div>
+
+              <div class="product-screen-2 wow fadeInUp" data-wow-delay="0.8s" data-wow-duration="1.0s">
+                <img src="../../assets/img/product-screen-2.png" alt="">
+              </div>
+              <!--<div class="product-screen-3 wow fadeInUp" data-wow-delay="0.6s" data-wow-duration="1.0s">
+                <img src="../../assets/img/product-screen-3.png" alt="">
+              </div>-->
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<section id="poducts" class="about-mf sect-pt4 route">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="title-box text-center">
+          <h3 class="title-a">
+            Nabídka telefonů
+          </h3>
+          <p class="subtitle-a">
+            Klikněte na produkt pro konkrétní informace
+          </p>
+          <div class="line-mf"></div>
+        </div>
+      </div>
+    </div>   
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="phones-to-modal" class="row">
+            <div *ngFor="let mobile of mobilesAvailable" class="col-xl-4 col-lg-6 col-sm-12 container-productos" (click)="selectedIphone(mobile.id)">
+              <div class="popis">
+                {{mobile.name}}
+                <div class="line-mf-product"></div>
+              </div>
+              <img [src]="'../../assets/img/phones/' + mobile.imgName" />
+              <div class="detail">
+                Zobrazit detail
+              </div>
+              <div class="cenovka">
+                Od {{mobile.priceFour}} Kč
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-12 text-center">
+          Uvedené ceny jsou bez DPH.
+        </div>
+      </div>
+    </div>
+    <!--<div class="row">
+      <div class="col-sm-12">
+        <div id="phones-to-modal" class="row">
+          <div class="col-xl-4 col-lg-6 col-sm-12 container-productos" (click)="selectedIphone('se')">
+            <div class="popis">
+              iPhone SE
+              <div class="line-mf-product"></div>
+            </div>
+            <img src="../../assets/img/phones/iphoneSE.png" />
+            <div class="detail">
+              Zobrazit detail
+            </div>
+            <div class="cenovka">
+              Od 69 Kč
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-sm-12 container-productos" (click)="selectedIphone('sixS')">
+            <div class="popis">
+              iPhone 6s
+              <div class="line-mf-product"></div>
+            </div>
+            <img src="../../assets/img/phones/iphone6S.png" />
+            <div class="detail">
+              Zobrazit detail
+            </div>
+            <div class="cenovka">
+              Od 89 Kč
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-sm-12 container-productos" (click)="selectedIphone('sixSPlus')">
+            <div class="popis">
+              iPhone 6s Plus
+              <div class="line-mf-product"></div>
+            </div>
+            <img src="../../assets/img/phones/iphone6SPlus.png" />
+            <div class="detail">
+              Zobrazit detail
+            </div>
+            <div class="cenovka">
+              Od 109 Kč
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 text-center">
+          Uvedené ceny jsou bez DPH.
+        </div>
+
+
+      </div>
+    </div>-->
+
+  </div>
+
+  <!-- Modal -->
+  <div *ngIf="selectedMobile" id="exampleModalCenter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Detail pronájmu</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col" style="padding-top:30px;">
+              <!--<img *ngIf="SE" src="../../assets/img/phones/iphoneSE.png" style="max-height:450px;" />
+  <img *ngIf="sixS" src="../../assets/img/phones/iphone6S.png" style="max-height:450px;" />
+  <img *ngIf="sixSPlus" src="../../assets/img/phones/iphone6SPlus.png" style="max-height:450px;" />-->
+              <img [src]="'../../assets/img/phones/' + selectedMobile.imgName" style="max-height:450px;" />
+            </div>
+            <div class="col" style="padding-left:30px;">
+              <h3>{{selectedMobile.name}}</h3>
+              <!--<h3 *ngIf="sixS">iPhone 6s</h3>
+              <h3 *ngIf="SE">iPhone SE</h3>
+              <h3 *ngIf="sixSPlus">iPhone 6s Plus</h3>-->
+              <div class="line-mf-product-detail"></div>
+              <!--<p>Varianta zařízení</p>-->
+              <div class="row" style="margin-bottom:30px;">
+                <div class="col-sm-6">
+                  <p>
+                    Vnitřní paměť
+                  </p>
+                  <input id="select-capacity"
+                         checked
+                         onclick="return false;"
+                         name="select-capacity" type="checkbox" />
+                  <label for="select-capacity"><strong>{{selectedMobile.capacity}}</strong></label>
+                </div>
+                <div class="col-sm-6">
+                  <p>
+                    Barva
+                  </p>
+                  <input id="select-color"
+                         checked
+                         onclick="return false;"
+                         name="select-color" type="checkbox" />
+                  <label for="select-color"><strong>{{'colors.' + selectedMobile.color | translate }}</strong></label>
+                </div>
+              </div>
+
+
+              <p>Na jak dlouho potřebujete iPhone půjčit?</p>
+              <div class="range-slider" style="padding: 10px 50px 25px 50px;
+    background: #f6f6f6;
+    border-radius: 5px;">
+                <span style="left:3px;" id="rs-bullet" class="rs-label">3</span>
+                <!--<input *ngIf="SE" oninput="showSliderValue(129,109,89,69)" id="rs-range-line" class="rs-range" type="range" value="3" min="3" max="30">
+                <input *ngIf="sixS" (input)="showSliderValue(149,129,109,89)" id="rs-range-line" class="rs-range" type="range" value="3" min="3" max="30">-->
+                <!--<input *ngIf="sixSPlus" (input)="showSliderValue(169,149,129,109)" id="rs-range-line" class="rs-range" type="range" value="3" min="3" max="30">-->
+                <input (input)="showSliderValue()" id="rs-range-line" class="rs-range" type="range" value="3" min="3" max="30">
+              </div>
+              <div class="row text-center" style="margin:21px auto 0;">
+                <h6 class="col text-right">
+                  <p>Cena za den</p>
+                </h6>
+                <div class="col text-left">
+                  <!--<h6 *ngIf="sixS" id="rs-day">
+                    149 Kč
+                  </h6>
+                  <h6 *ngIf="SE" id="rs-day">
+                    129 Kč
+                  </h6>
+                  <h6 *ngIf="sixSPlus" id="rs-day">
+                    169 Kč
+                  </h6>-->
+                  <h6 id="rs-day">
+                    {{selectedMobile.priceOne}} Kč
+                  </h6>
+                </div>
+              </div>
+              <div class="row text-left" style="margin:21px auto 0; padding: 21px;
+    background: #f6f6f6;
+    border-radius: 5px; font-size:27px;">
+                <span>
+                  Celková cena:
+                </span>
+                <!--<span *ngIf="SE" id="rs-sum" style="padding-left:10px;">
+                  387 Kč
+                </span>
+                <span *ngIf="sixSPlus" id="rs-sum" style="padding-left:10px;">
+                  507 Kč
+                </span>
+                <span *ngIf="sixS" id="rs-sum" style="padding-left:10px;">
+                  447 Kč
+                </span>-->
+                <span id="rs-sum" style="padding-left:10px;">
+                  {{selectedMobile.priceOne * 3}} Kč
+                </span>
+              </div>
+              <div class="row" style="margin-top:21px">
+                <div class="col-sm-12 text-center">
+                  <label>
+                    Vratná kauce <strong>{{selectedMobile.deposit}}&nbsp;Kč</strong><!--<strong *ngIf="sixSPlus">3 000 Kč</strong><strong *ngIf="sixS">3 000 Kč</strong><strong *ngIf="SE">2 000 Kč</strong>-->
+                  </label>
+                  <br />
+                  <label>Uvedené ceny jsou bez DPH.</label>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-submit" [routerLink]="['/poptavka']" data-dismiss="modal">Vytvořit poptávku</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="d-block d-sm-block d-md-block d-lg-none">
+  <div class="section-counter paralax-mf bg-image" style="background: url(../../assets/img/counters-bg.jpg) 0% 0% / cover; ">
+    <div class="overlay-mf"></div>
+    <div class="container">
+      <div class="row">
+
+      </div>
+    </div>
+  </div>
+  <div>
+
+  </div>
+</div>
+
+<div class="d-none d-lg-block d-xl-block">
+  <div class="section-counter paralax-mf bg-image" style="background-image: url(../../assets/img/counters-bg.jpg)">
+    <div class="overlay-mf"></div>
+    <div class="container">
+      <div class="row">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="service" class="portfolio-mf sect-pt4 route" style="background:#0e0e0e">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="title-box text-center">
+          <h3 class="title-a" style="color:white;">
+            Představení služby
+          </h3>
+          <p class="subtitle-a">
+
+          </p>
+          <div class="line-mf"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-describe" style="color:white;">
+      Jsme služba, která poskytuje mobilní telefony značky Apple ke krátkodobému pronájmu.
+      Ať už máte svůj iPhone v opravně či z jakékoli
+      jiného důvodu potřebujete půjčit iPhone, jsme Vám k službám!
+    </div>
+
+  </div>
+</section>
+
+<div class="d-block d-sm-block d-md-block d-lg-none">
+  <div class="testimonials paralax-mf bg-image" style="
+     background: url(../../assets/img/make-order.jpg) 0% 0% / cover;">
+    <div class="overlay-mf"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-none d-lg-block d-xl-block">
+  <div class="testimonials paralax-mf bg-image" style="
+    background-image: url(../../assets/img/make-order.jpg); background-position-y: 100px;">
+    <div class="overlay-mf"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="how-it-works" class="blog-mf sect-pt4 route" style="background:#0e0e0e">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="title-box text-center">
+          <h3 class="title-a" style="color:white;">
+            Jak to funguje
+          </h3>
+          <p class="subtitle-a">
+            <!--Lorem ipsum, dolor sit amet consectetur adipisicing elit.-->
+          </p>
+          <div class="line-mf"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-describe" style="color:white;">
+      Jednoduše si vyberete iPhone, který si chcete půjčit, vytvoříte poptávku a my se vám obratem ozveme.
+      Nebo nás můžete rovnou kontaktovat na telefonním čísle 704 061 523.
+      Iphone si můžete vyzvednout osobně v Praze,
+      anebo vám telefon zašleme přes dopravce DPD.
+    </div>
+
+  </div>
+</section>
+
+<div class="d-block d-sm-block d-md-block d-lg-none">
+  <div class="section-counter paralax-mf bg-image" style="background: url(../../assets/img/iphone-wallpaper.jpg) 0% 0% / cover;">
+    <div class="overlay-mf"></div>
+    <div class="container">
+      <div class="row">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-none d-lg-block d-xl-block">
+  <div class="section-counter paralax-mf bg-image" style="background-image: url(../../assets/img/iphone-wallpaper.jpg)">
+    <div class="overlay-mf"></div>
+    <div class="container">
+      <div class="row">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<section id="faq" class="portfolio-mf sect-pt4 route">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="title-box text-center">
+          <h3 class="title-a">
+            Často kladené otázky (FAQ)
+          </h3>
+          <p class="subtitle-a">
+
+          </p>
+          <div class="line-mf"></div>
+        </div>
+      </div>
+    </div>
+    <div style="min-height:210px">
+      <div class="accordion" id="accordionExample" style="margin-bottom:21px;">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Podepisuje se nějaká smlouva?
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              Ano, bez smlouvy to bohužel nepůjde, smlouva chrání jak nás pronajímatele,
+              tak i vás nájemce. Nebojte se, vše vám vysvětlíme a odpovíme na případné dotazy.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link " type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Jsou mobily pojištěné ?
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+              Všechny naše mobily jsou pojištěné proti poškození.
+              Každý náš mobil má ochranné sklo a zadní kryt.
+              Nicméně bez spoluúčasti to nepůjde.
+              Poškození mobilu dělíme do 2 typů – poškození displeje a totální poškození mobilu.
+              Výše spoluúčasti
+              vždy záleží na typu mobilu. Veškeré podrobnější informace jsou vždy uvedené ve smlouvě.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Co když mobil ztratím nebo mi ho ukradnou ?
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+              V tomto případě budete muset uhradit celou výši daného mobilu.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingFour">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Půjčujete telefon každému?
+              </button>
+            </h5>
+          </div>
+          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+            <div class="card-body">
+              Pokud vám je minimálně 18 let, tak ano. Nicméně bonitu každého našeho klienta řešíme
+              individuálně, vyhrazujeme si právo navýšit vratnou kauci v celé výši daného mobilu.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingFive">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                Na jak dlouho je psaná smlouva ?
+              </button>
+            </h5>
+          </div>
+          <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+            <div class="card-body">
+              Smlouva je stanovena na pevné období, je tu ale možnost prodloužit smlouvu dodatkem.
+              Pokud řešíte například reklamaci či pojistnou událost a neznáte přesné datum vrácení,
+              lze smlouvu napsat na 1 měsíc s tím, že můžete pronájem kdykoliv ukončit, nejdříve však
+              po 3 dnech.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="other-questions-text" class="row">
+        <div class="col-sm-12 text-center">
+          Máte další otázky? Pokud ano, můžete využít náš&nbsp;<a href="#contact">kontaktní formulář</a>, nebo přímo na náš email info@pujcimeiphone.cz nebo zavolejte na tel. číslo&nbsp;704&nbsp;061&nbsp;523.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

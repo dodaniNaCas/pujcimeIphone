@@ -1,0 +1,23 @@
+#login-form .col-sm-4, #login-form .col-sm-3, #edit-forms .col-sm-4, #edit-forms .col-sm-3 {
+  margin-top: 50px;
+}
+
+#login-form .line-mf, #edit-forms .line-mf{
+  margin:50px 0 0 0;
+}
+
+#login-form, .mobile-item {
+  padding: 30px;
+  background: white;
+  border-radius: 15px;
+  margin:50px;
+}
+
+.mobile-item {
+  margin-bottom: 50px;
+}
+
+.mobile-item button{
+  margin-top:30px;
+}
+

@@ -1,0 +1,530 @@
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="card">
+    <div class="card-header" id="formOne">
+      <div class="row">
+        <div class="col-xs-10">
+          <h5 class="mb-0">
+            <button class="btn btn-collapse-form collapsed" type="button" data-toggle="collapse" data-target="#collapseFormOne" aria-expanded="false" aria-controls="collapseFormOne">
+              VÝBĚR TELEFONU A PŘÍSLUŠENSTVÍ
+            </button>
+          </h5>
+          <div class="line-mf-product-detail"></div>
+        </div>
+        <div class="col-xs-2">
+          <div *ngIf="eLocationOne" class="col-sm-2 form-location-error">!</div>
+        </div>
+      </div>
+     
+    </div>
+    <div id="collapseFormOne" class="collapse show" aria-labelledby="formOne" data-parent="#accordionForm">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <span class="label" style="font-size:15px;">* pole je povinné</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="form-group">
+            </div>
+            <div class="form-group">
+              <div class="form-get" *ngIf="form.get('typeOfPhone'); let control">
+                <label class="input-group-text" for="form-typeOfPhone">*Vyberte model telefonu:</label>
+                <select class="custom-select"
+                        autocapitalize="none"
+                        id="form-typeOfPhone"
+                        name="typeOfPhone"
+                        (change)="changePhoneChoice()"
+                        [formControl]="control"
+                        appValidationIsInvalid
+                        [control]="control"
+                        [or]="alreadySubmitted">
+                    <option *ngFor="let option of mobileOptions" [value]="option.id">{{option.name}}</option>
+                </select>
+                <app-validation-errors [control]="control"
+                                       [or]="alreadySubmitted"></app-validation-errors>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-get" *ngIf="form.get('fullPackage'); let control">
+              <input (click)="getfullPackage()" id="form-fullPackage"
+                     name="fullPackage" type="checkbox" />
+              <label for="form-fullPackage">Chci zapůjčit i krabičku od mobilu</label>
+            </div>
+          </div>
+
+          <div class="col-md-12 form-get">
+            <label class="input-group-text" for="form-reasonOfRent">*Důvod zapůjčení:</label>
+            <div *ngIf="form.get('reasonOfRent'); let control">
+              <div class="inner-addon right-addon simple-input">
+                <textarea autocapitalize="none" type="text"
+                          id="form-reasonOfRent"
+                          name="reasonOfRent"
+                          style="width:100%;"
+                          rows="5"
+                          [formControl]="control"
+                          appValidationIsInvalid
+                          [control]="control"
+                          [or]="alreadySubmitted"> </textarea>
+                <app-validation-errors [control]="control"
+                                       [or]="alreadySubmitted"></app-validation-errors>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="row" style="margin-top:15px;">
+          <div class="col">
+          </div>
+          <div class="col">
+            <button class="btn btn-submit pull-right" type="button" data-toggle="collapse" data-target="#collapseFormTwo" aria-expanded="false" aria-controls="collapseFormTwo">Další</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="formTwo">
+      <div class="row">
+        <div class="col-xs-10">
+          <h5 class="mb-0">
+            <button class="btn btn-collapse-form collapsed" type="button" data-toggle="collapse" data-target="#collapseFormTwo" aria-expanded="false" aria-controls="collapseFormTwo">
+              ZPŮSOB PŘEDÁNÍ A TERMÍN PRONÁJMU
+            </button>
+          </h5>
+          <div class="line-mf-product-detail"></div>
+        </div>
+        <div class="col-xs-2">
+          <div *ngIf="eLocationTwo" class="col-sm-2 form-location-error">!</div>
+        </div>
+      </div>      
+
+    </div>
+    <div id="collapseFormTwo" class="collapse" aria-labelledby="formTwo" data-parent="#accordionForm">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-get" *ngIf="form.get('dateOfRent'); let control">
+                <label for="form-dateOfRent" class="inp">
+                <input placeholder="&nbsp;"
+                       autocapitalize="none" type="text"
+                       id="form-dateOfRent"
+                       (focusout)="dateChanged($event)"
+                       name="dateOfRent"
+                       [formControl]="control"
+                       appValidationIsInvalid
+                       [control]="control"
+                       [or]="alreadySubmitted">
+                  <span class="label">*Datum zapůjčení</span>
+                  <span class="border-green"></span>
+                </label>
+                <app-validation-errors [control]="control"
+                                       [or]="alreadySubmitted"></app-validation-errors>
+            </div>
+          </div>
+            <div class="col-sm-6">
+              <div class="form-get" *ngIf="form.get('dateOfReturn'); let control">
+                  <label for="form-dateOfReturn" class="inp">
+                  <input placeholder="&nbsp;"
+                         autocapitalize="none" type="text"
+                         id="form-dateOfReturn"
+                         name="dateOfReturn"
+                         [formControl]="control"
+                         (focusout)="dateChanged($event)"
+                         appValidationIsInvalid
+                         [control]="control"
+                         [or]="alreadySubmitted">
+                    <span class="label">Datum vrácení (pokud znáte)</span>
+                    <span class="border-green"></span>
+                  </label>
+                  <app-validation-errors [control]="control"
+                                         [or]="alreadySubmitted"></app-validation-errors>
+              </div>
+            </div>
+          </div>
+        <div class="row">
+          <div class="col-sm-12" style="float:none;margin:0 auto;">
+          <div class="form-group">
+            <div class="form-get" *ngIf="form.get('typeOfDelivery'); let control">
+              <label class="input-group-text" for="form-typeOfDelivery">*Vyberte způsob předání:</label>
+              <select class="custom-select"
+                      autocapitalize="none" type="text"
+                      id="form-typeOfDelivery"
+                      name="typeOfDelivery"
+                      (focusout)="dateChanged($event)"
+                      [formControl]="control"
+                      appValidationIsInvalid
+                      [control]="control"
+                      [or]="alreadySubmitted">
+                <option selected>Osobní předaní v Praze</option>
+                <option value="1">Odeslat telefon přes dopravce ( Česká pošta, PPL, DHL )</option>
+              </select>
+              <app-validation-errors [control]="control"
+                                     [or]="alreadySubmitted"></app-validation-errors>
+
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top:15px;">
+          <div class="col">
+            <button class="btn btn-submit" type="button" data-toggle="collapse" data-target="#collapseFormOne" aria-expanded="false" aria-controls="collapseFormOne">Zpět</button>
+          </div>
+          <div class="col pull-right">
+            <button class="btn btn-submit" type="button" data-toggle="collapse" data-target="#collapseFormThree" aria-expanded="false" aria-controls="collapseFormThree">Další</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="formThree">
+      <div class="row">
+        <div class="col-xs-10">
+          <h5 class="mb-0">
+            <button class="btn btn-collapse-form collapsed" type="button" data-toggle="collapse" data-target="#collapseFormThree" aria-expanded="false" aria-controls="collapseFormThree">
+              KONTAKTNÍ A FAKTURAČNÍ ÚDAJE
+            </button>
+          </h5>
+          <div class="line-mf-product-detail"></div>
+        </div>
+        <div class="col-xs-2">
+          <div *ngIf="eLocationThree" class="col-sm-2 form-location-error">!</div>
+        </div>
+      </div>
+      
+    </div>
+    <div id="collapseFormThree" class="collapse" aria-labelledby="formThree" data-parent="#accordionForm">
+      <div class="card-body">
+        <div class="row">
+          <div style="padding-top:10px;" class="col-md-6 text-center">
+            <input (click)="typeOfCustomer($event)" [checked]="!isFO" type="checkbox" id="SO" />
+            <label for="SO">soukromá osoba</label>
+          </div>
+          <div style="padding-top:10px;" class="col-md-6 text-center">
+            <input [checked]="isFO" (click)="typeOfCustomer($event)" type="checkbox" id="FO" />
+            <label for="FO">podnikatel / firma</label>
+          </div>
+        </div>
+        <div *ngIf="isFO" class="row">
+          <div class="form-get col-sm-12 text-center" *ngIf="form.get('ico'); let control">
+            <label for="form-ico" class="inp">
+              <input placeholder="&nbsp;"
+                     autocapitalize="none" type="text"
+                     id="form-ico"
+                     name="ico"
+                     onkeypress="return digitsAndComma(event)"
+                     (change)="isICOnotBlank()"
+                     [formControl]="control"
+                     appValidationIsInvalid
+                     [control]="control"
+                     [or]="alreadySubmitted">
+              <span class="label">*IČO</span>
+              <span class="border-green"></span>
+            </label>
+            <div *ngIf="ICOnotBlank" class="global-validation-form">
+              Pole pro IČO musíte vyplnit, pokud chcete objednat jako podnikatel či firma.
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 form-sum">
+          <h5>
+            Jméno a příjmení
+          </h5>
+          <div class="line-mf-product-detail"></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-get" *ngIf="form.get('name'); let control">
+              <label for="form-name" class="inp">
+                <input placeholder="&nbsp;"
+                       autocapitalize="none" type="text"
+                       id="form-name"
+                       name="name"
+                       [formControl]="control"
+                       appValidationIsInvalid
+                       [control]="control"
+                       [or]="alreadySubmitted">
+                <span class="label">*Jméno</span>
+                <span class="border-green"></span>
+              </label>
+              <app-validation-errors [control]="control"
+                                     [or]="alreadySubmitted"></app-validation-errors>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-get" *ngIf="form.get('surname'); let control">
+              <div class="inner-addon right-addon simple-input">
+                <label for="form-surname" class="inp">
+                  <input placeholder="&nbsp;"
+                         autocapitalize="none" type="text"
+                         id="form-surname"
+                         name="surname"
+                         [formControl]="control"
+                         appValidationIsInvalid
+                         [control]="control"
+                         [or]="alreadySubmitted">
+                  <span class="label">*Příjmení</span>
+                  <span class="border-green"></span>
+                </label>
+                <app-validation-errors [control]="control"
+                                       [or]="alreadySubmitted"></app-validation-errors>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 form-sum">
+          <h5>
+            Adresa
+          </h5>
+          <div class="line-mf-product-detail"></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-get" *ngIf="form.get('street'); let control">
+              <div class="inner-addon right-addon simple-input">
+                <label for="form-street" class="inp">
+                  <input placeholder="&nbsp;"
+                         autocapitalize="none" type="text"
+                         id="form-street"
+                         name="street"
+                         [formControl]="control"
+                         appValidationIsInvalid
+                         [control]="control"
+                         [or]="alreadySubmitted">
+                  <span class="label">*Ulice</span>
+                  <span class="border-green"></span>
+                </label>
+                <app-validation-errors [control]="control"
+                                       [or]="alreadySubmitted"></app-validation-errors>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-get" *ngIf="form.get('cp'); let control">
+              <div class="inner-addon right-addon simple-input">
+                <label for="form-cp" class="inp">
+                  <input placeholder="&nbsp;"
+                         autocapitalize="none" type="text"
+                         id="form-cp"
+                         name="cp"
+                         [formControl]="control"
+                         appValidationIsInvalid
+                         onkeypress="return digitsAndComma(event)"
+                         [control]="control"
+                         [or]="alreadySubmitted">
+                  <span class="label">*Číslo popisné</span>
+                  <span class="border-green"></span>
+                </label>
+                <app-validation-errors [control]="control"
+                                       [or]="alreadySubmitted"></app-validation-errors>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-get" *ngIf="form.get('city'); let control">
+              <label for="form-city" class="inp">
+                <input placeholder="&nbsp;"
+                       autocapitalize="none" type="text"
+                       id="form-city"
+                       name="city"
+                       [formControl]="control"
+                       appValidationIsInvalid
+                       [control]="control"
+                       [or]="alreadySubmitted">
+                <span class="label">*Město</span>
+                <span class="border-green"></span>
+              </label>
+              <app-validation-errors [control]="control"
+                                     [or]="alreadySubmitted"></app-validation-errors>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-get" *ngIf="form.get('psc'); let control">
+              <label for="form-psc" class="inp">
+                <input placeholder="&nbsp;"
+                       autocapitalize="none" type="text"
+                       id="form-psc"
+                       name="psc"
+                       onkeypress="return digitsAndComma(event)"
+                       [formControl]="control"
+                       appValidationIsInvalid
+                       [control]="control"
+                       [or]="alreadySubmitted">
+                <span class="label">*PSČ</span>
+                <span class="border-green"></span>
+              </label>
+              <app-validation-errors [control]="control"
+                                     [or]="alreadySubmitted"></app-validation-errors>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 form-sum">
+          <h5>
+            Kontakt
+          </h5>
+          <div class="line-mf-product-detail"></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-get" *ngIf="form.get('phone'); let control">
+              <label for="form-phone" class="inp">
+                <input placeholder="&nbsp;"
+                       autocapitalize="none" type="text"
+                       id="form-phone"
+                       name="phone"
+                       onkeypress="return digitsAndComma(event)"
+                       [formControl]="control"
+                       appValidationIsInvalid
+                       [control]="control"
+                       [or]="alreadySubmitted">
+
+                <span class="label">*Telefonní číslo</span>
+                <span class="border-green"></span>
+              </label>
+              <app-validation-errors [control]="control"
+                                     [or]="alreadySubmitted"></app-validation-errors>
+
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-get" *ngIf="form.get('email'); let control">
+              <label for="form-email" class="inp">
+                <input autocapitalize="none" type="text"
+                       placeholder="&nbsp;"
+                       id="form-email"
+                       name="email"
+                       [formControl]="control"
+                       (focusout)="emailValidation(form.get('email').value)"
+                       appValidationIsInvalid
+                       [control]="control"
+                       [or]="alreadySubmitted">
+                <span class="label">*Email</span>
+                <span class="border-green"></span>
+              </label>
+              <!--<app-validation-errors [control]="control"
+                                     [or]="alreadySubmitted"></app-validation-errors>-->
+              <div class="row">
+                <div class="col-sm-12 text-center" style="float:none; margin:0 auto;">
+                  <div *ngIf="alreadySubmitted && emailValidationE" class="global-validation-form">
+                    Email musí být ve formátu 'jan.novak@poskytovatel.com'.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top:50px;">
+          <div class="col-sm-12 text-center">
+            <h4>Máte nějakou poznámku?</h4>
+            <div class="form-get" *ngIf="form.get('note'); let control">
+              <div class="inner-addon right-addon simple-input">
+                <textarea autocapitalize="none" type="text"
+                          id="form-note"
+                          name="note"
+                          style="width:100%;"
+                          rows="5"
+                          [formControl]="control"
+                          appValidationIsInvalid
+                          [control]="control"
+                          [or]="alreadySubmitted"> </textarea>
+                <app-validation-errors [control]="control"
+                                       [or]="alreadySubmitted"></app-validation-errors>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div style="padding-top:10px;" class="col-md-6">
+            <input (change)="approveChange()" type="checkbox" id="approve" />
+            <label for="approve">Souhlasím se zpracováním osobních údajů</label>
+            <div>
+              <div *ngIf="alreadySubmitted && !approve" class="global-validation-form">
+                Musíte souhlasit se zpracováním osobních údajů
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row" style="margin-top:15px;">
+          <div class="col">
+            <button class="btn btn-submit" type="button" data-toggle="collapse" data-target="#collapseFormTwo" aria-expanded="false" aria-controls="collapseFormTwo">Zpět</button>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-submit pull-right" (click)="beforeSubmit()">Odeslat poptávku</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 text-center" style="float:none; margin:0 auto;">
+            <div *ngIf="validationE" class="global-validation-form">
+              Vyplňte prosím správně všechna pole.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="submitEModal" class="modal fade" role="dialog">
+    <div style="margin-top: calc(50vh - 160px);" class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Chybné vyplnění poptávky</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="global-validation-form">
+            Vyplňte prosím správně všechna pole.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="submitModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Shrnutí poptávky</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Typ telefonu: <strong>{{typeOfPhone}}</strong></p>
+          <p>Chci zapůjčit i včetně balení ( krabička, nabíječka ) : <strong>{{ wantFullpackage ? 'Ano' : 'Ne'}}</strong></p>
+          <p>Důvod zápůjčky: <strong>{{form.get('reasonOfRent').value}}</strong></p>
+          <p>Doručení: <strong>{{form.get('typeOfDelivery').value}}</strong></p>
+          <p>Datum zápujčky: <strong>{{form.get('dateOfRent').value}}</strong></p>
+          <p>Datum vrácení: <strong>{{form.get('dateOfReturn').value ? form.get('dateOfReturn').value : 'Nevyplněno'}}</strong></p>
+          <p *ngIf="isFO">Ičo: <strong>{{form.get('ico').value ? form.get('ico').value : 'Nevyplněno'}}</strong></p>
+          <p>Jméno: <strong>{{form.get('name').value}}</strong></p>
+          <p>Příjmení: <strong>{{form.get('surname').value}}</strong></p>
+          <p>Adresa: <strong>{{form.get('street').value + form.get("cp").value + form.get('city').value + form.get('psc').value}}</strong></p>
+          <p>Telefonní číslo: <strong>{{form.get('phone').value}}</strong></p>
+          <p>Email: <strong>{{form.get('email').value}}</strong></p>
+          <p>Poznámka: <strong>{{form.get('note').value ? form.get('note').value : 'Nevyplněno'}}</strong></p>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-submit">Ano, odeslat poptávku</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Ne, chci to ještě upravit</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</form>

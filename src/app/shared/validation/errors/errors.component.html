@@ -1,0 +1,5 @@
+<ng-container *ngIf="or">
+    <div class="global-validation-form" *ngFor="let error of mappedErrors">
+        {{ 'validation.errors.' + error.key | translate:error.params }}
+    </div>
+</ng-container>

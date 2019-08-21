@@ -1,0 +1,10 @@
+@media screen and (max-width:991px){
+  .center-scroll{
+    display:none !important;
+  }
+  #home {
+    background: url(../../assets/img/blak.jpg) 0% 0% / cover !important;
+  }
+}
+
+

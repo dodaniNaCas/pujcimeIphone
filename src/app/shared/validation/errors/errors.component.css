@@ -1,0 +1,7 @@
+app-validation-errors {
+  display: none;
+  }
+  .invalid-feedback {
+    display: block;
+  }
+

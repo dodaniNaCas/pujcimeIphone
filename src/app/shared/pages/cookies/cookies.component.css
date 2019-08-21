@@ -1,0 +1,7 @@
+.title-box {
+  margin-top: 150px;
+}
+
+.col-sm-6:nth-child(2) {
+  margin-bottom: 30px;
+}

@@ -1,0 +1,303 @@
+<div *ngIf="isLogged">
+  
+  <form id="login-form">
+    <div class="row" style="margin-top:50px;">
+      <div class="col-sm-12">
+        <div class="title-box text-center">
+          <h3 class="title-a" style="text-transform:none;">
+            Pridej si sem novy hracky
+          </h3>
+          <p class="subtitle-a">
+
+          </p>
+          <div class="line-mf" style="margin:0 auto;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <label for="form-name" class="inp">
+          <input autocapitalize="none" type="text"
+                 id="form-name"
+                 #name
+                 placeholder="&nbsp;">
+          <span class="label">Nazev novyho telefonu chapes</span>
+          <span class="border-green"></span>
+        </label>
+      </div>
+      <div class="col-sm-4">
+        <label for="form-imgName" class="inp">
+          <input autocapitalize="none" type="text"
+                 id="form-imgName"
+                 #imgName
+                 placeholder="&nbsp;">
+          <span class="label">tady bude pak upload obrazku</span>
+          <span class="border-green"></span>
+        </label>
+      </div>
+    </div>
+    <div class="line-mf"></div>
+    <div class="row">
+      <div class="col-sm-4">
+        <label for="form-capacity" class="inp">
+          <input autocapitalize="none" type="text"
+                 id="form-capacity"
+                 #capacity
+                 placeholder="&nbsp;">
+          <span class="label">Kapacita GB atd znas to</span>
+          <span class="border-green"></span>
+        </label>
+      </div>
+      <div class="col-sm-4">
+        <label for="form-color" class="inp">
+          <input autocapitalize="none" type="text"
+                 #color
+                 id="form-color"
+                 placeholder="&nbsp;">
+          <span class="label">Barva, napis silver treba, je to cool</span>
+          <span class="border-green"></span>
+        </label>
+      </div>
+    </div>
+    <div class="line-mf"></div>
+    <div class="row">
+      <div class="col-sm-3">
+        <label for="form-priceOne" class="inp">
+          <input autocapitalize="none" type="text"
+                 id="form-priceOne"
+                 #priceOne
+                 placeholder="&nbsp;">
+          <span class="label">Ta nejvyssi cena od 3 do 5 dnu</span>
+          <span class="border-green"></span>
+        </label>
+      </div>
+      <div class="col-sm-3">
+        <label for="form-priceTwo" class="inp">
+          <input autocapitalize="none" type="text"
+                 id="form-priceTwo"
+                 #priceTwo
+                 placeholder="&nbsp;">
+          <span class="label">ta dalsi cena</span>
+          <span class="border-green"></span>
+        </label>
+      </div>
+
+      <div class="col-sm-3">
+        <label for="form-priceThree" class="inp">
+          <input autocapitalize="none" type="text"
+                 id="form-priceThree"
+                 #priceThree
+                 placeholder="&nbsp;">
+          <span class="label">ta predposledni cena</span>
+          <span class="border-green"></span>
+        </label>
+      </div>
+      <div class="col-sm-3">
+        <label for="form-priceFour" class="inp">
+          <input autocapitalize="none" type="text"
+                 id="form-priceFour"
+                 #priceFour
+                 placeholder="&nbsp;">
+          <span class="label">ta nejlevnejsi chapes ne</span>
+          <span class="border-green"></span>
+        </label>
+      </div>
+    </div>
+    <div class="line-mf"></div>
+    <div class="row">
+      <div class="col-sm-4">
+        <label for="form-deposit" class="inp">
+          <input autocapitalize="none" type="text"
+                 id="form-deposit"
+                 #deposit
+                 placeholder="&nbsp;">
+          <span class="label">Ta kauce co zebras</span>
+          <span class="border-green"></span>
+        </label>
+      </div>
+    </div>
+
+    <button style="margin-top:50px;" class="btn btn-submit" (click)="submit(name.value,imgName.value,capacity.value,color.value,priceOne.value,priceTwo.value,priceThree.value,priceFour.value,deposit.value)">Pridat</button>
+  </form>
+
+
+
+  <div id="edit-forms" *ngFor="let item of mobilesAvailable">
+    <div class="mobile-item">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a" style="text-transform:none">
+              {{item.name}}
+            </h3>
+            <p class="subtitle-a">
+
+            </p>
+            <div style="margin:0 auto;" class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <label for="form-name" class="inp">
+            <input autocapitalize="none" type="text"
+                   id="form-name"
+                   #nameUpdate
+                   value="{{item.name}}"
+                   placeholder="&nbsp;">
+            <span class="label">Nazev telefonu</span>
+            <span class="border-green"></span>
+          </label>
+        </div>
+        <div class="col-sm-4">
+          <label for="form-imgName" class="inp">
+            <input autocapitalize="none" type="text"
+                   id="form-imgName"
+                   #imgNameUpdate
+                   value="{{item.imgName}}"
+                   placeholder="&nbsp;">
+            <span class="label">tady bude pak upload obrazku</span>
+            <span class="border-green"></span>
+          </label>
+        </div>
+      </div>
+      <div class="line-mf"></div>
+      <div class="row">
+        <div class="col-sm-4">
+          <label for="form-capacity" class="inp">
+            <input autocapitalize="none" type="text"
+                   id="form-capacity"
+                   #capacityUpdate
+                   value="{{item.capacity}}"
+                   placeholder="&nbsp;">
+            <span class="label">Kapacita</span>
+            <span class="border-green"></span>
+          </label>
+        </div>
+        <div class="col-sm-4">
+          <label for="form-color" class="inp">
+            <input autocapitalize="none" type="text"
+                   #colorUpdate
+                   id="form-color"
+                   value="{{item.color}}"
+                   placeholder="&nbsp;">
+            <span class="label">Barva</span>
+            <span class="border-green"></span>
+          </label>
+        </div>
+      </div>
+      <div class="line-mf"></div>
+      <div class="row">
+        <div class="col-sm-3">
+          <label for="form-priceOne" class="inp">
+            <input autocapitalize="none" type="text"
+                   id="form-priceOne"
+                   #priceOneUpdate
+                   value="{{item.priceOne}}"
+                   placeholder="&nbsp;">
+            <span class="label">Ta nejvyssi cena od 3 do 5 dnu</span>
+            <span class="border-green"></span>
+          </label>
+        </div>
+        <div class="col-sm-3">
+          <label for="form-priceTwo" class="inp">
+            <input autocapitalize="none" type="text"
+                   id="form-priceTwo"
+                   #priceTwoUpdate
+                   value="{{item.priceTwo}}"
+                   placeholder="&nbsp;">
+            <span class="label">Ta dalsi cena</span>
+            <span class="border-green"></span>
+          </label>
+        </div>
+
+        <div class="col-sm-3">
+          <label for="form-priceThree" class="inp">
+            <input autocapitalize="none" type="text"
+                   id="form-priceThree"
+                   #priceThreeUpdate
+                   value="{{item.priceThree}}"
+                   placeholder="&nbsp;">
+            <span class="label">Ta predposledni cena</span>
+            <span class="border-green"></span>
+          </label>
+        </div>
+        <div class="col-sm-3">
+          <label for="form-priceFour" class="inp">
+            <input autocapitalize="none" type="text"
+                   id="form-priceFour"
+                   #priceFourUpdate
+                   value="{{item.priceFour}}"
+                   placeholder="&nbsp;">
+            <span class="label">Nejlevnejsi cena</span>
+            <span class="border-green"></span>
+          </label>
+        </div>
+      </div>
+      <div class="line-mf"></div>
+      <div class="row">
+        <div class="col-sm-4">
+          <label for="form-deposit" class="inp">
+            <input autocapitalize="none" type="text"
+                   id="form-deposit"
+                   #depositUpdate
+                   value="{{item.deposit}}"
+                   placeholder="&nbsp;">
+            <span class="label">Kauce</span>
+            <span class="border-green"></span>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <button (click)="updateItem(item.id,nameUpdate.value,imgNameUpdate.value,capacityUpdate.value,colorUpdate.value,priceOneUpdate.value,priceTwoUpdate.value,priceThreeUpdate.value,priceFourUpdate.value,depositUpdate.value)" type="submit" class="btn btn-submit">Upravit</button>
+        </div>
+        <div class="col-sm-6">
+          <button type="button" class="btn btn-default" (click)="deleteItem(item.id)">Odstranit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="login-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Login</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="form-username" class="inp">
+              <input autocapitalize="none" type="text"
+                     id="form-username"
+                     #username
+                     placeholder="&nbsp;">
+              <span class="label">Přihlašovací jméno</span>
+              <span class="border-green"></span>
+            </label>
+          </div>
+          <div class="col-sm-6">
+            <label for="form-password" class="inp">
+              <input autocapitalize="none" type="password"
+                     id="form-password"
+                     #password
+                     placeholder="&nbsp;">
+              <span class="label">Heslo</span>
+              <span class="border-green"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="login(username.value,password.value)" type="button" data-dismiss="modal" class="btn btn-submit">Přihlásit se</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
