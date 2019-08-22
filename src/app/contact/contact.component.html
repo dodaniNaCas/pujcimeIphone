@@ -43,8 +43,15 @@
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-group">
-                          <input #email type="email" class="form-control" name="email" id="contactEmail" placeholder="Váš email" data-rule="email" data-msg="Please enter a valid email" />
+                          <input #email type="email" (focusout)="emailValidation(email.value)" class="form-control" name="email" id="contactEmail" placeholder="Váš email" data-rule="email" data-msg="Please enter a valid email" />
                           <div class="validation"></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-12 text-center" style="float:none; margin:0 auto;">
+                            <div *ngIf="alreadySubmitted && emailValidationE" class="global-validation-form">
+                              Email musí být ve formátu 'jan.novak@poskytovatel.com'.
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
@@ -55,7 +62,7 @@
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-group">
-                          <textarea #body class="form-control" name="contactMessage" rows="5" data-rule="required" data-msg="Zde napište váš dotaz." placeholder="Zpráva..."></textarea>
+                          <textarea #body class="form-control" id="contactBody" name="contactMessage" rows="5" data-rule="required" data-msg="Zde napište váš dotaz." placeholder="Zpráva..."></textarea>
                           <div class="validation"></div>
                         </div>
                       </div>
@@ -101,7 +108,7 @@
                   <div class="row">
                     <div class="col-sm-6">
                       <ul class="list-ico">
-                        <li style="padding-top:40px;"><span class="ion-email"></span> info@pujcimeiphone.cz</li>
+                        <li style="padding-top:40px;"><span class="ion-email"></span> <a href="mailto:info@pujcimeiphone.cz">info@pujcimeiphone.cz</a></li>
                         <li>IČO: 06748481</li>
                         <li>Jsme plátci DPH.</li>
                       </ul>
@@ -111,8 +118,8 @@
                 </div>
                 <div class="socials">
                   <ul>
-                    <li><a href=""><span class="ico-circle"><i class="ion-social-facebook"></i></span></a></li>
-                    <li><a href=""><span class="ico-circle"><i class="ion-social-instagram"></i></span></a></li>
+                    <li><a href="https://www.facebook.com/pujcimeiphone.cz/"><span class="ico-circle"><i class="ion-social-facebook"></i></span></a></li>
+                    <li><a href="https://www.instagram.com/pujcimeiphone.cz/"><span class="ico-circle"><i class="ion-social-instagram"></i></span></a></li>
                   </ul>
                 </div>
               </div>
@@ -143,3 +150,27 @@
     </div>
   </footer>
 </section>
+
+<!-- Modal -->
+<div id="contactFormModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Odeslání dotazu</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="col-sm-12 text-center">
+          <p>Váš dotaz byl úspěšně odeslán. </p>
+          <p>Ozveme se vám hned jak to půjde. :)</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-submit" data-dismiss="modal">Zavřít</button>
+      </div>
+    </div>
+
+  </div>
+</div>

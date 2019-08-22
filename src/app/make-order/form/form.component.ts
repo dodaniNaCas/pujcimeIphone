@@ -12,6 +12,7 @@ import { Observable } from 'rxjs/Observable';
 declare function showSumaModal();
 declare function showEModal();
 declare function loadDatepickers();
+declare function toggleModal(id, ids): Function;
 
 @Component({
   selector: 'app-poptavka-form',
@@ -39,15 +40,20 @@ export class FormComponent implements OnInit, AfterViewInit {
   emailValidationE: boolean = true;
   mobileOptions: Mobile[] = [];
   typeOfPhone: string = "";
+  approveCheckbox: HTMLInputElement;
+  wantFullPackageCheckbox: HTMLInputElement;
 
   ngAfterViewInit() {
     loadDatepickers();
+    this.approveCheckbox = document.getElementById("approve") as HTMLInputElement;
+    this.wantFullPackageCheckbox = document.getElementById("form-fullPackage") as HTMLInputElement;
   }
 
   ngAfterViewChecked() {
     if (this.alreadySubmitted) {
       this.findErrorLocation();
     }
+
   }
 
   //notificationFrequencyList() { return Object.keys(NotificationFrequency); }
@@ -55,21 +61,23 @@ export class FormComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     console.log(this.sharedService.mobile);
     this.buildForm();
-    this.sharedService.$getAllPhones().subscribe((res : Mobile[])=>{
-      res.forEach((item)=>{
-        this.mobileOptions.push({id : item.id, name: item.name + ' ' + item.capacity + ' ' + item.color});
+    this.sharedService.$getAllPhones().subscribe((res: Mobile[]) => {
+      res.forEach((item) => {
+        this.mobileOptions.push({ id: item.id, name: item.name + ' ' + item.capacity + ' ' + item.color });
       });
-    },(e)=>{
+    }, (e) => {
       console.log(e);
     });
 
     if (this.sharedService.mobile) {
       this.form.get('typeOfPhone').setValue(this.sharedService.mobile.id);
+      this.getTypeOfPhone(this.sharedService.mobile.id);
     }
+
     this.cd.markForCheck();
   }
 
-  emailValidation(value:string) {
+  emailValidation(value: string) {
     let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!pattern.test(value)) {
       this.emailValidationE = true;
@@ -112,13 +120,13 @@ export class FormComponent implements OnInit, AfterViewInit {
   }
 
   typeOfCustomer($event) {
-   
+
     if ($event.target.id !== "FO") {
-   
+
       this.isFO = false;
     }
     else {
-     
+
       this.isFO = true;
     }
     this.isICOnotBlank();
@@ -134,7 +142,7 @@ export class FormComponent implements OnInit, AfterViewInit {
   }
 
   changePhoneChoice() {
-      this.getTypeOfPhone(this.form.get('typeOfPhone').value);
+    this.getTypeOfPhone(this.form.get('typeOfPhone').value);
   }
 
   isICOnotBlank() {
@@ -149,12 +157,12 @@ export class FormComponent implements OnInit, AfterViewInit {
   }
 
   getTypeOfPhone(id) {
-      this.httpGet(interpolate(EnvironmentConfig.settings.env.uriPrefix + EnvironmentConfig.settings.env.getPhoneById, { phoneId: id })).subscribe((res: Mobile) => {
-        this.typeOfPhone = res.name + ' ' + res.capacity + ' ' + res.color;
-        this.cd.markForCheck();
-      }, (e) => {
-        console.log(e);
-      });
+    this.httpGet(interpolate(EnvironmentConfig.settings.env.uriPrefix + EnvironmentConfig.settings.env.getPhoneById, { phoneId: id })).subscribe((res: Mobile) => {
+      this.typeOfPhone = res.name + ' ' + res.capacity + ' ' + res.color;
+      this.cd.markForCheck();
+    }, (e) => {
+      console.log(e);
+    });
   }
 
   findErrorLocation() {
@@ -180,7 +188,7 @@ export class FormComponent implements OnInit, AfterViewInit {
 
     }
     this.cd.markForCheck();
-      
+
   }
 
   beforeSubmit() {
@@ -235,10 +243,22 @@ export class FormComponent implements OnInit, AfterViewInit {
     }
     this.sharedService.$sendOrderEmail(bodyItem).subscribe((res) => {
       console.log(res);
+      setTimeout(() => {
+        toggleModal("orderModal", null);
+        this.form.reset();
+        this.alreadySubmitted = false;
+        this.wantFullPackage = false;
+        this.approve = false;
+        this.approveCheckbox.checked = false;
+        this.wantFullPackageCheckbox.checked = false;
+        this.cd.markForCheck();
+      }, 500);
+
+      this.cd.markForCheck();
     },
       (e) => {
-      console.log(e);
-    });
+        console.log(e);
+      });
 
 
   }

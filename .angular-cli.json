@@ -34,7 +34,8 @@
         "assets/lib/datepicker/bootstrap-datepicker.cs.min.js",
         "assets/lib/typed/typed.js",
         "assets/lib/wow/wow.js",
-        "assets/js/main.min.js"
+        "assets/js/main.min.js",
+        "assets/js/another-scripts.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

@@ -29,6 +29,8 @@ export class AuthComponent implements OnInit {
   deleteItem(id) {
     this.sharedService.$deletePhone(id, this.token).subscribe(
       (res) => {
+        this.mobilesAvailable.forEach((item) => { if (item.id === id) this.mobilesAvailable.splice(this.mobilesAvailable.indexOf(item), 1); });
+        this.cd.markForCheck();
         console.log(res);
       }, (e) => {
         console.log(e);
@@ -95,6 +97,12 @@ export class AuthComponent implements OnInit {
   submit(name, imgName, capacity, color, priceOne, priceTwo, priceThree, priceFour, deposit) {
     let newMobile: Mobile = { name: name, imgName: imgName, capacity: capacity, color: color, priceOne: parseInt(priceOne), priceTwo: parseInt(priceTwo), priceThree: parseInt(priceThree), priceFour: parseInt(priceFour), deposit: parseInt(deposit) }
     this.sharedService.$addNewPhone(newMobile, this.token).subscribe((res) => {
+      this.sharedService.$getAllPhones().subscribe((res) => {
+        this.mobilesAvailable = res;
+        this.cd.markForCheck();
+      }, (e) => {
+        console.log(e);
+      });
       console.log(res);
     }, (e) => {
       console.log(e);
