@@ -441,7 +441,7 @@
         <div class="row">
           <div style="padding-top:10px;" class="col-md-6">
             <input (change)="approveChange()" type="checkbox" id="approve" />
-            <label for="approve">Souhlasím se zpracováním osobních údajů</label>
+            <label for="approve">Souhlasím se <a style="text-decoration:underline;" target="_blank" href="../../../assets/files/ochrana-osobnich-udaju-pujcimeiphone.pdf">zpracováním osobních údajů</a></label>
             <div>
               <div *ngIf="alreadySubmitted && !approve" class="global-validation-form">
                 Musíte souhlasit se zpracováním osobních údajů
@@ -503,7 +503,7 @@
         </div>
         <div class="modal-body">
           <p>Typ telefonu: <strong>{{typeOfPhone}}</strong></p>
-          <p>Chci zapůjčit i včetně balení ( krabička, nabíječka ) : <strong>{{ wantFullpackage ? 'Ano' : 'Ne'}}</strong></p>
+          <p>Chci zapůjčit i včetně balení ( krabička, nabíječka ) : <strong>{{ wantFullPackage ? 'Ano' : 'Ne'}}</strong></p>
           <p>Důvod zápůjčky: <strong>{{form.get('reasonOfRent').value}}</strong></p>
           <p>Doručení: <strong>{{form.get('typeOfDelivery').value}}</strong></p>
           <p>Datum zápujčky: <strong>{{form.get('dateOfRent').value}}</strong></p>

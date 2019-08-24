@@ -134,9 +134,9 @@ export class FormComponent implements OnInit, AfterViewInit {
 
   getFullPackage() {
     if (this.wantFullPackage)
-      this.wantFullPackage = true;
-    else
       this.wantFullPackage = false;
+    else
+      this.wantFullPackage = true;
 
     this.cd.markForCheck();
   }
@@ -219,19 +219,19 @@ export class FormComponent implements OnInit, AfterViewInit {
       city: this.form.get('city').value,
       cp: this.form.get('cp').value,
       dateOfRent: this.form.get('dateOfRent').value,
-      dateOfReturn: this.form.get('dateOfReturn').value,
+      dateOfReturn: this.form.get('dateOfReturn').value ? this.form.get('dateOfReturn').value : 'Nevyplněno',
       email: this.form.get('email').value,
-      fullPackage: this.form.get('fullPackage').value,
-      ico: this.form.get('ico').value,
+      fullPackage: this.wantFullPackage ? 'Ano' : 'Ne',
+      ico: this.form.get('ico').value ? this.form.get('ico').value : 'Nevyplněno',
       name: this.form.get('name').value,
-      note: this.form.get('note').value,
+      note: this.form.get('note').value ? this.form.get('note').value : 'Nevyplněno',
       phone: this.form.get('phone').value,
       psc: this.form.get('psc').value,
       reasonOfRent: this.form.get('reasonOfRent').value,
       street: this.form.get('street').value,
       surname: this.form.get('surname').value,
       typeOfDelivery: this.form.get('typeOfDelivery').value,
-      typeOfPhone: this.form.get('typeOfPhone').value
+      typeOfPhone: this.typeOfPhone
 
 
     };

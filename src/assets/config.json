@@ -2,7 +2,7 @@
   "env": {
     "production": false,
     "debug": true,
-    "uriPrefix": "http://pujicimeiphtest.aspfree.cz/api/",
+    "uriPrefix": "https://apiservice.cz/api/",
     "uriPrefixDebug": "http://pujicimeiphtest.aspfree.cz/api/",
     "getPhones": "/mobile",
     "getPhoneById": "/mobile/#{phoneId}"
