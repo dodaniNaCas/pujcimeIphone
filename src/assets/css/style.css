@@ -2189,3 +2189,19 @@ label:hover:before {
 .ino input:focus + .border-green {
   background: #d6e01d !important;
 }
+
+#clanek1 li,#clanek2 li,#clanek3 li{
+  margin-bottom:30px;
+  font-size:16px;
+  font-weight: bolder;
+}
+
+#clanek1 img,#clanek2 img{
+  height:500px;
+  margin:0 auto;
+  margin-bottom: 30px;
+}
+
+#clanek3 h3{
+  margin:35px 0px;
+}

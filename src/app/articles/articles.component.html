@@ -16,7 +16,7 @@
     <div class="articles-container">
       <div *ngFor="let article of articles">
           <app-article-item class="aitem"
-            (click)="redirectTo(article)" 
+          [routerLink]="['/clanek', article.id]"
             [article]="article"></app-article-item>
       </div>
     </div>

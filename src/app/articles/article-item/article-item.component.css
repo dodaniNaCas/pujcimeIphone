@@ -7,9 +7,15 @@
     margin-bottom:30px;
     cursor: pointer;
     padding:35px;
-    -webkit-box-shadow: 0px 0px 28px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 28px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 28px 0px rgba(0,0,0,0.75);
-    background: rgb(234, 234, 234);
-    
+    border: 1px solid #d6e01d;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.38);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.38);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.38);
+    background:white;
+    transition: 0.3s transform ease-in-out;
+}
+
+.aItem:hover{
+    transform: scale(1.1);
+    transition: 0.3s transform ease-in-out;
 }

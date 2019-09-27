@@ -1,0 +1,22 @@
+<section id="{{'clanek' + article.id}}" style="padding-top:80px;">
+  <div class="container" style="background:white;padding:50px;">
+    <div routerLink='/clanky' class="backArrow">
+      <span style="color:#d6e01d;font-size:21px;">
+        <</span> Všechny články</div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="title-box text-center">
+          <h1 class="title-a">
+            {{article.title}}
+          </h1>
+          <p class="subtitle-a">
+            {{article.preview}}
+          </p>
+          <div class="line-mf"></div>
+        </div>
+      </div>
+    </div>
+    <div [innerHTML]="article.content">
+    </div>
+  </div>
+</section>

@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { SharedService } from '../shared/shared.service';
 
 @Component({
   selector: 'app-articles',
@@ -7,11 +8,9 @@ import { Component, OnInit, HostListener } from '@angular/core';
 })
 export class ArticlesComponent implements OnInit {
 
-  articles:Article[] = [{id:1,title:"toto je prvni",content:"toto je obsah pro 1"},
-  {id:2,title:"toto je druhou",content:"toto je obsah pro 2"},
-  {id:3,title:"toto je treti",content:"toto je obsah pro 3"}];
+  articles:Article[];
 
-  constructor() { }
+  constructor(private sharedService: SharedService) { }
 
   @HostListener('window:scroll', ['$event'])
   scrollHandler(event) {
@@ -26,6 +25,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.articles = this.sharedService.$getArticle();
   }
 
 }

@@ -20,13 +20,15 @@ import { HttpModule } from '@angular/http';
 import { AuthComponent } from './login/auth/auth.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticleItemComponent } from './articles/article-item/article-item.component';
+import { ArticleDetailComponent } from './articles/article-detail/article-detail.component';
 
 const appRoutes: Routes = [
-  { path: 'poptavka', component: MakeOrderComponent },
-  { path: 'cookies', component: CookiesComponent },
-  { path: 'ochrana-osobnich-udaju', component: PersonalDataComponent },
-  { path: 'add-new-toys', component: AuthComponent },
-  { path: 'clanky', component: ArticlesComponent },
+  { path: 'poptavka', component: MakeOrderComponent, data: { title: 'Vytvoření poptavky' }},
+  { path: 'cookies', component: CookiesComponent, data: { title: 'Zasady pouzivani cookies' } },
+  { path: 'ochrana-osobnich-udaju', component: PersonalDataComponent , data: { title: 'Ochrana osobnich udaju' }},
+  { path: 'add-new-toys', component: AuthComponent, data: { title: 'Administrace' } },
+  { path: 'clanky', component: ArticlesComponent, data: { title: 'Seznam clanku' } },
+  { path: 'clanek/:id', component: ArticleDetailComponent, data: { title: 'Konkretni clanek' } },
   { path: '', component: HomeComponent },
   { path: '**', component: HomeComponent}
 ];
@@ -50,7 +52,8 @@ export function translateLoaderFactory(http: HttpClient) {
     PersonalDataComponent,
     AuthComponent,
     ArticlesComponent,
-    ArticleItemComponent
+    ArticleItemComponent,
+    ArticleDetailComponent
   ],
   imports: [
     HttpModule,
