@@ -6,31 +6,33 @@
           <a class="navbar-brand js-scroll" (click)="navigate($event,'page-top')"><img height="40" src="../assets/img/band_logo.png" /> půjčíme<strong>iPhone.cz</strong></a>
         </div>
         <div class="col-sm-2">
-          <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
-                  aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
         </div>
       </div>
 
       <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link js-scroll" data-toggle="collapse" data-target="#navbarDefault" (click)="navigate($event,'poducts')">Nabídka</a>
+            <a class="nav-link js-scroll close-nav" (click)="navigate($event,'poducts')">Nabídka</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll" data-toggle="collapse" data-target="#navbarDefault" (click)="navigate($event,'service')">Co poskytujeme</a>
+            <a class="nav-link js-scroll close-nav" (click)="navigate($event,'service')">Co poskytujeme</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll" data-toggle="collapse" data-target="#navbarDefault" (click)="navigate($event,'how-it-works')">Jak to funguje</a>
+            <a class="nav-link js-scroll close-nav" (click)="navigate($event,'how-it-works')">Jak to funguje</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll" data-toggle="collapse" data-target="#navbarDefault" (click)="navigate($event,'faq')">FAQ</a>
+            <a [routerLink]="['/clanky']" class="nav-link close-nav js-scroll">Články</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll" data-toggle="collapse" data-target="#navbarDefault" (click)="navigate($event,'contactSection')">Kontakt</a>
+            <a class="nav-link js-scroll close-nav" (click)="navigate($event,'faq')">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll close-nav" (click)="navigate($event,'contactSection')">Kontakt</a>
           </li>
         </ul>
       </div>

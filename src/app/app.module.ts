@@ -18,13 +18,15 @@ import { PersonalDataComponent } from './shared/pages/personal-data/personal-dat
 import { EnvironmentConfig } from './shared/environment.config';
 import { HttpModule } from '@angular/http';
 import { AuthComponent } from './login/auth/auth.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { ArticleItemComponent } from './articles/article-item/article-item.component';
 
 const appRoutes: Routes = [
   { path: 'poptavka', component: MakeOrderComponent },
   { path: 'cookies', component: CookiesComponent },
   { path: 'ochrana-osobnich-udaju', component: PersonalDataComponent },
-  {
-    path: 'add-new-toys', component: AuthComponent },
+  { path: 'add-new-toys', component: AuthComponent },
+  { path: 'clanky', component: ArticlesComponent },
   { path: '', component: HomeComponent },
   { path: '**', component: HomeComponent}
 ];
@@ -46,7 +48,9 @@ export function translateLoaderFactory(http: HttpClient) {
     ContactComponent,
     CookiesComponent,
     PersonalDataComponent,
-    AuthComponent
+    AuthComponent,
+    ArticlesComponent,
+    ArticleItemComponent
   ],
   imports: [
     HttpModule,

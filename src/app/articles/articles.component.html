@@ -1,0 +1,24 @@
+<section id="articles">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="title-box text-center">
+          <h1 class="title-a">
+            Články
+          </h1>
+          <p class="subtitle-a">
+            Zde se můžete dozvědět blalbalba
+          </p>
+          <div class="line-mf"></div>
+        </div>
+      </div>
+    </div>
+    <div class="articles-container">
+      <div *ngFor="let article of articles">
+          <app-article-item class="aitem"
+            (click)="redirectTo(article)" 
+            [article]="article"></app-article-item>
+      </div>
+    </div>
+  </div>
+</section>

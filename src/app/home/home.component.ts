@@ -5,7 +5,7 @@ import { Mobile, getMobileInstances } from '../shared/models/mobile-mocks';
 declare function homeTyped(): Function;
 declare function openModalDetail(numberDay): Function;
 declare function closeModalDetail(): Function;
-declare function showSliderValue(priceOne, priceTwo, priceThree, priceFour): Function;
+declare function showSliderValue(priceOne, priceTwo, priceThree, priceFour,input): Function;
 
 @Component({
   selector: 'app-home',
@@ -58,9 +58,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
 
-  showSliderValue() {
+  showSliderValue(input) {
     showSliderValue(this.selectedMobile.priceOne, this.selectedMobile.priceTwo,
-      this.selectedMobile.priceThree, this.selectedMobile.priceFour);
+      this.selectedMobile.priceThree, this.selectedMobile.priceFour,input);
   }
 
   selectedIphone(id) {
@@ -69,16 +69,17 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sharedService.$getPhoneById(id).subscribe((res :Mobile)=>{
       this.sharedService.mobile = res;
       this.selectedMobile = res;
+      this.cd.markForCheck();
+      setTimeout(() => {
+        openModalDetail(this.sharedService.mobile.priceOne);
+      }, 300);
     }, (e)=>{
       console.log(e);
     });
     //KOMUNIKACE S API NEJLEPE ENDPOINT S GET NA KONKRETNI ITEM
    // this.sharedService.mobile = this.mobilesAvailable[id - 1];
    // this.selectedMobile = this.mobilesAvailable[id - 1];
-    this.cd.markForCheck();
-    setTimeout(() => {
-      openModalDetail(this.sharedService.mobile.priceOne);
-    }, 300);
+   
   }
 
   ngOnDestroy() {

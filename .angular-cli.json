@@ -27,9 +27,7 @@
         "assets/css/style.css"
       ],
       "scripts": [
-        "assets/lib/jquery/jquery.min.js",
-        "assets/lib/jquery/jquery-migrate.min.js",
-        "assets/lib/bootstrap/js/bootstrap.min.js",
+        
         "assets/lib/datepicker/bootstrap-datepicker.js",
         "assets/lib/datepicker/bootstrap-datepicker.cs.min.js",
         "assets/lib/typed/typed.js",

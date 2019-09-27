@@ -43,7 +43,7 @@
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-group">
-                          <input #email type="email" (focusout)="emailValidation(email.value)" class="form-control" name="email" id="contactEmail" placeholder="Váš email" data-rule="email" data-msg="Please enter a valid email" />
+                          <input #email type="email" (input)="emailValidation(email.value)" class="form-control" name="email" id="contactEmail" placeholder="Váš email" data-rule="email" data-msg="Please enter a valid email" />
                           <div class="validation"></div>
                         </div>
                         <div class="row">
@@ -164,7 +164,7 @@
       <div class="modal-body">
         <div class="col-sm-12 text-center">
           <p>Váš dotaz byl úspěšně odeslán. </p>
-          <p>Ozveme se vám hned jak to půjde. :)</p>
+          <p>Ozveme se Vám, hned jak to půjde.</p>
         </div>
       </div>
       <div class="modal-footer">

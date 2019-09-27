@@ -22,27 +22,31 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit() {
-    if (window.location.pathname === "/poptavka") {
-      this.router.navigate['/poptavka'];
-    }
-    else if (window.location.pathname === "/ochrana-osobnich-udaju") {
-      this.router.navigate['/ochrana-osobnich-udaju'];
-    }
-    else if (window.location.pathname === "/cookies") {
-      this.router.navigate['/cookies'];
-    }
-    else if (window.location.pathname === "/add-new-toys") {
-      this.router.navigate['/add-new-toys'];
-    }
-    else if (window.location.pathname === "/") {
-      this.router.navigate['/'];
-    }
-    else if (window.location.hash !== "") {
+    let routes = ["/","/poptavka",'/ochrana-osobnich-udaju','/cookies',"/add-new-toys",'/clanky'];
+    routes.forEach((item) => {
+      if(window.location.pathname === item){
+        this.router.navigate[item];    
+        console.log("ok, so redirecting to " + item);
+        return;
+      }
+    });
 
-    }
-    else {
-      window.location.pathname = "/";
-    }
+    // if (window.location.pathname === "/poptavka") {
+    //   this.router.navigate['/poptavka'];
+    // }
+    // else if (window.location.pathname === "/ochrana-osobnich-udaju") {
+    //   this.router.navigate['/ochrana-osobnich-udaju'];
+    // }
+    // else if (window.location.pathname === "/cookies") {
+    //   this.router.navigate['/cookies'];
+    // }
+    // else if (window.location.pathname === "/add-new-toys") {
+    //   this.router.navigate['/add-new-toys'];
+    // }
+    // else if (window.location.pathname === "/") {
+    //   this.router.navigate['/'];
+    // }
+    
     
     console.log(window.location);
     

@@ -160,7 +160,7 @@
                         [control]="control"
                         [or]="alreadySubmitted">
                   <option selected>Osobní předaní v Praze</option>
-                  <option value="1">Odeslat telefon přes dopravce ( Česká pošta, PPL, DHL )</option>
+                  <option value="1">Odeslat telefon přes dopravce DPD</option>
                 </select>
                 <app-validation-errors [control]="control"
                                        [or]="alreadySubmitted"></app-validation-errors>
@@ -216,7 +216,7 @@
                      autocapitalize="none" type="text"
                      id="form-ico"
                      name="ico"
-                     onkeypress="return digitsAndComma(event)"
+                     onkeypress="return digitsAndSlash(event)"
                      (change)="isICOnotBlank()"
                      [formControl]="control"
                      appValidationIsInvalid
@@ -313,7 +313,7 @@
                          name="cp"
                          [formControl]="control"
                          appValidationIsInvalid
-                         onkeypress="return digitsAndComma(event)"
+                         onkeypress="return digitsAndSlash(event)"
                          [control]="control"
                          [or]="alreadySubmitted">
                   <span class="label">*Číslo popisné</span>
@@ -398,8 +398,9 @@
                        placeholder="&nbsp;"
                        id="form-email"
                        name="email"
+                       #formEmailValidation
                        [formControl]="control"
-                       (focusout)="emailValidation(form.get('email').value)"
+                       (input)="emailValidation(formEmailValidation.value)"
                        appValidationIsInvalid
                        [control]="control"
                        [or]="alreadySubmitted">
@@ -508,7 +509,7 @@
           <p>Doručení: <strong>{{form.get('typeOfDelivery').value}}</strong></p>
           <p>Datum zápujčky: <strong>{{form.get('dateOfRent').value}}</strong></p>
           <p>Datum vrácení: <strong>{{form.get('dateOfReturn').value ? form.get('dateOfReturn').value : 'Nevyplněno'}}</strong></p>
-          <p *ngIf="isFO">Ičo: <strong>{{form.get('ico').value ? form.get('ico').value : 'Nevyplněno'}}</strong></p>
+          <p *ngIf="isFO">IČO: <strong>{{form.get('ico').value ? form.get('ico').value : 'Nevyplněno'}}</strong></p>
           <p>Jméno: <strong>{{form.get('name').value}}</strong></p>
           <p>Příjmení: <strong>{{form.get('surname').value}}</strong></p>
           <p>Adresa: <strong>{{form.get('street').value + form.get("cp").value + form.get('city').value + form.get('psc').value}}</strong></p>
@@ -538,7 +539,7 @@
           <div class="col-sm-12 text-center">
             <p>Váš poptávka byla úspěšně odeslána.</p>
             <p>Zkontrolujte potvrzovací email, který Vám dojde během několika minut.</p>
-            <p>Ozveme se vám hned jak to půjde. :)</p>
+            <p>Ozveme se Vám, hned jak to půjde.</p>
           </div>
         </div>
         <div class="modal-footer">

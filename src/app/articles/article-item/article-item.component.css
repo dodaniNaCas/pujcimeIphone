@@ -1,0 +1,15 @@
+.aItem{
+    width:70%;
+    height:300px;
+    border-radius:15px;
+    color:black;
+    margin: 0 auto;
+    margin-bottom:30px;
+    cursor: pointer;
+    padding:35px;
+    -webkit-box-shadow: 0px 0px 28px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 28px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 28px 0px rgba(0,0,0,0.75);
+    background: rgb(234, 234, 234);
+    
+}

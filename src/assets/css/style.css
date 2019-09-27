@@ -1856,9 +1856,10 @@ section {
   line-height: 30px;
   text-align: center;
   font-weight: bold;
-  padding-top: 13px;
+  padding-top: 0px;
+  padding-left: 12px;
   box-sizing: border-box;
-  /*border: 2px solid #1B1B1B;*/
+  border: 2px solid #818181;
   /*margin-top: 20px;*/
   left: attr(value);
   color: #1B1B1B;
